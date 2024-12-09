@@ -3,8 +3,10 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 from recommend import recommend_movies, df, feature_matrix, knn_model
+import bcrypt
 
-# Load .env
+
+# Load Environment Variables
 load_dotenv()
 
 # Get MongoDB URI from .env
@@ -13,140 +15,220 @@ if not mongo_uri:
     st.error("MongoDB URI is not set in the .env file.")
     st.stop()
 
-# Connect to MongoDB
-client = MongoClient(mongo_uri, serverSelectionTimeoutMS=5000)
-client.server_info()
-db = client["user_database"]
-users = db["users"]
 
-# Initialize session state for login
+# Connect to MongoDB
+try:
+    client = MongoClient(mongo_uri, serverSelectionTimeoutMS=5000)
+    client.server_info()  # Trigger exception if cannot connect
+    db = client["user_database"]  # Database name
+    users_collection = db["users"]  # Collection name
+except Exception as e:
+    st.error(f"Could not connect to MongoDB: {e}")
+    st.stop()
+
+
+# Initialize Session State for Login
 if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
     st.session_state.username = None
     st.session_state.message = None
 
-# Callback for Login
-def login_user(username, password):
-    user = users.find_one({"username": username, "password": password})
-    if user:
-        st.session_state.logged_in = True
-        st.session_state.username = username
-        st.session_state.message = f"Welcome, {username}!"
-    else:
-        st.session_state.message = "Invalid username or password"
 
-# Callback for Logout
+# User Registration 
+def register_user(username, password):
+    if users_collection.find_one({"username": username}):
+        return False, "Username already exists. Please choose a different one."
+    # Hash the password
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+    # Store user with hashed password and empty recommendations
+    users_collection.insert_one({
+        "username": username,
+        "password": hashed_password,
+        "recommendations": []  # To store user-specific recommendations
+    })
+    return True, "User registered successfully!"
+
+
+# User Login Function
+def login_user(username, password):
+    user = users_collection.find_one({"username": username})
+    if user:
+        # Verify password
+        if bcrypt.checkpw(password.encode('utf-8'), user['password']):
+            st.session_state.logged_in = True
+            st.session_state.username = username
+            st.session_state.message = f"Welcome, {username}!"
+        else:
+            st.session_state.message = "Invalid username or password."
+    else:
+        st.session_state.message = "Invalid username or password."
+
+
+# User Logout Function
 def logout_user():
     st.session_state.clear()
 
-# User Registration Function
-def register_user(username, password):
-    if users.find_one({"username": username}):
-        return False, "Username already exists."
-    users.insert_one({"username": username, "password": password})
-    return True, "User registered successfully!"
 
-# Login system
-if not st.session_state.logged_in:
-    st.title("Login or Register")
+# Display Past Recommendations
+def display_past_recommendations(username):
+    user = users_collection.find_one({"username": username})
+    if user and user.get("recommendations"):
+        st.header("📚 Your Previous Recommendations")
+        for idx, rec in enumerate(user["recommendations"], 1):
+            st.markdown(f"### {idx}. {rec['title']} ({rec['release_date']})")
+            # Handle genres
+            genres = ', '.join(rec['genres']) if isinstance(rec['genres'], list) else rec['genres']
+            # Handle director
+            director = ', '.join(rec['director']) if isinstance(rec['director'], list) else rec['director']
+            # Handle actors
+            actors = ', '.join(rec['actors']) if isinstance(rec['actors'], list) else rec['actors']
+            st.write(f"**Genres:** {genres}")
+            st.write(f"**Director:** {director}")
+            st.write(f"**Actors:** {actors}")
+            st.write(f"**Rating:** {rec['rating']}")
+            st.markdown("---")
+    else:
+        st.info("You have no past recommendations.")
 
-    # Tabs for login and registration
-    tab1, tab2 = st.tabs(["Login", "Register"])
 
-    # Login Tab
-    with tab1:
-        uname = st.text_input("Username", key="login_username")
-        pswd = st.text_input("Password", type="password", key="login_password")
-        if st.button("Login", on_click=login_user, args=(uname, pswd)):
-            pass
-        if st.session_state.get("message"):
-            st.success(st.session_state.message) if st.session_state.logged_in else st.error(st.session_state.message)
+# Main Application
+def main():
+    # If not logged in, show login and registration
+    if not st.session_state.logged_in:
+        st.title("🎬 Movie Recommendation System")
+        st.write("Please log in or register to continue.")
 
-    # Register Tab
-    with tab2:
-        new_uname = st.text_input("New Username", key="register_username")
-        new_pswd = st.text_input("New Password", type="password", key="register_password")
-        if st.button("Register"):
-            success, message = register_user(new_uname, new_pswd)
-            if success:
-                st.success(message)
+        # Tabs for Login and Register
+        tab1, tab2 = st.tabs(["🔒 Login", "📝 Register"])
+        
+        # Login Tab
+        with tab1:
+            st.subheader("Login")
+            with st.form("login_form"):
+                login_username = st.text_input("Username", key="login_username")
+                login_password = st.text_input("Password", type="password", key="login_password")
+                submit_login = st.form_submit_button("Login")
+                
+                if submit_login:
+                    if not login_username or not login_password:
+                        st.error("Please enter both username and password.")
+                    else:
+                        login_user(login_username, login_password)
+                        if st.session_state.message:
+                            if st.session_state.logged_in:
+                                st.success(st.session_state.message)
+                            else:
+                                st.error(st.session_state.message)
+
+        # Register Tab
+        with tab2:
+            st.subheader("Register")
+            with st.form("register_form"):
+                register_username = st.text_input("Choose a Username", key="register_username")
+                register_password = st.text_input("Choose a Password", type="password", key="register_password")
+                register_confirm_password = st.text_input("Confirm Password", type="password", key="register_confirm_password")
+                submit_register = st.form_submit_button("Register")
+                
+                if submit_register:
+                    if not register_username or not register_password or not register_confirm_password:
+                        st.error("Please fill out all fields.")
+                    elif register_password != register_confirm_password:
+                        st.error("Passwords do not match.")
+                    else:
+                        success, message = register_user(register_username, register_password)
+                        if success:
+                            st.success(message)
+                        else:
+                            st.error(message)
+    else:
+        # If logged in, show the main app
+        st.title("🎬 Personalized Movie Recommendation System")
+        st.write("### Welcome to your personalized movie recommendation dashboard!")
+
+        # Display past recommendations
+        display_past_recommendations(st.session_state.username)
+
+        st.write("""
+        ### How it Works:
+        1. **Select and Rate Movies**: Choose up to 5 movies you've watched and rate them.
+        2. **Get Recommendations**: The system will suggest 5 movies based on your preferences.
+        """)
+
+        # Sidebar for user inputs
+        st.sidebar.header("Rate Your Favorite Movies")
+
+        # Display a multiselect widget for movies
+        movie_options = df['title'].tolist()
+        selected_titles = st.sidebar.multiselect("Select Movies You've Watched", movie_options, max_selections=5)
+
+        user_ratings = []
+
+        for title in selected_titles:
+            # Fetch the movieId for the selected title
+            movie_row = df[df['title'] == title]
+            if not movie_row.empty:
+                movie_id = movie_row['movieId'].values[0]
+                # Create a slider for rating
+                rating = st.sidebar.slider(f"Rate '{title}'", 1.0, 5.0, 3.0, step=0.5, key=title)
+                user_ratings.append((movie_id, rating))
             else:
-                st.error(message)
+                st.sidebar.warning(f"Movie '{title}' not found in the dataset.")
 
-# After login
-# Main app
-else:
-    # Streamlit App Layout
-    st.title("🎬 Personalized Movie Recommendation System")
+        # Button to get recommendations
+        if st.sidebar.button("Get Recommendations"):
+            if not user_ratings:
+                st.sidebar.warning("Please select and rate at least one movie.")
+            else:
+                try:
+                    with st.spinner("Generating recommendations..."):
+                        recommendations = recommend_movies(user_ratings, df, feature_matrix, knn_model, top_n=5)
 
-    st.write("""
-    ### How it Works:
-    1. **Select and Rate Movies**: Choose up to 5 movies you've watched and rate them.
-    2. **Get Recommendations**: The system will suggest 5 movies based on your preferences.
-    """)
+                    if recommendations.empty:
+                        st.warning("No recommendations found based on your ratings.")
+                    else:
+                        st.success("Here are your recommended movies:")
+                        for idx, row in recommendations.iterrows():
+                            st.markdown(f"### {row['title']} ({row['release_date']})")
 
-    # Sidebar for user inputs
-    st.sidebar.header("Rate Your Favorite Movies")
+                            # Handle genres
+                            if isinstance(row['genres'], list):
+                                genres = ', '.join(row['genres'])
+                            else:
+                                genres = row['genres']
 
-    # Display a multiselect widget for movies
-    movie_options = df['title'].tolist()
-    selected_titles = st.sidebar.multiselect("Select Movies You've Watched", movie_options, max_selections=5)
+                            # Handle director
+                            if isinstance(row['director'], list):
+                                director = ', '.join(row['director'])
+                            else:
+                                director = row['director']
 
-    user_ratings = []
+                            # Handle actors
+                            if isinstance(row['actors'], list):
+                                actors = ', '.join(row['actors'])
+                            else:
+                                actors = row['actors']
 
-    for title in selected_titles:
-        # Fetch the movieId for the selected title
-        movie_row = df[df['title'] == title]
-        if not movie_row.empty:
-            movie_id = movie_row['movieId'].values[0]
-            # Create a slider for rating
-            rating = st.sidebar.slider(f"Rate '{title}'", 1.0, 5.0, 3.0, step=0.5)
-            user_ratings.append((movie_id, rating))
-        else:
-            st.sidebar.warning(f"Movie '{title}' not found in the dataset.")
+                            st.write(f"**Genres:** {genres}")
+                            st.write(f"**Director:** {director}")
+                            st.write(f"**Actors:** {actors}")
+                            st.write(f"**Rating:** {row['rating']}")
+                            st.markdown("---")
 
-    # Button to get recommendations
-    if st.sidebar.button("Get Recommendations"):
-        if not user_ratings:
-            st.sidebar.warning("Please select and rate at least one movie.")
-        else:
-            try:
-                with st.spinner("Generating recommendations..."):
-                    recommendations = recommend_movies(user_ratings, df, feature_matrix, knn_model, top_n=5)
+                        # Save recommendations to MongoDB
+                        users_collection.update_one(
+                            {"username": st.session_state.username},
+                            {"$set": {"recommendations": recommendations.to_dict('records')}}
+                        )
+                        st.success("Your recommendations have been saved to your profile.")
+                except ValueError as e:
+                    st.error(str(e))
 
-                if recommendations.empty:
-                    st.warning("No recommendations found based on your ratings.")
-                else:
-                    st.success("Here are your recommended movies:")
-                    for idx, row in recommendations.iterrows():
-                        st.markdown(f"### {row['title']} ({row['release_date']})")
+        # Logout button
+        if st.sidebar.button("Logout"):
+            logout_user()
+            st.success("You have been logged out.")
 
-                        # Handle genres
-                        if isinstance(row['genres'], list):
-                            genres = ', '.join(row['genres'])
-                        else:
-                            genres = row['genres']
 
-                        # Handle director
-                        if isinstance(row['director'], list):
-                            director = ', '.join(row['director'])
-                        else:
-                            director = row['director']
-
-                        # Handle actors
-                        if isinstance(row['actors'], list):
-                            actors = ', '.join(row['actors'])
-                        else:
-                            actors = row['actors']
-
-                        st.write(f"**Genres:** {genres}")
-                        st.write(f"**Director:** {director}")
-                        st.write(f"**Actors:** {actors}")
-                        st.write(f"**Rating:** {row['rating']}")
-                        st.markdown("---")
-            except ValueError as e:
-                st.error(str(e))
-
-    # Logout button
-    if st.button("Logout", on_click=logout_user):
-        pass
+# Run the main
+if __name__ == "__main__":
+    main()
