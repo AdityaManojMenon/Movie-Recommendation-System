@@ -67,7 +67,7 @@ streamlit run app.py  <br>
 
 
 # 🛠 Model Training Details <br>
-"*" Dataset: movie_data.csv (contains movie titles, genres, directors, actors). <br>
+* Dataset: movie_data.csv (contains movie titles, genres, directors, actors). <br>
 "*" Preprocessing: Used MultiLabelBinarizer to one-hot encode categorical features. <br>
 "*" Feature Engineering: Applied weights to different features: <br>
 Genres: 1.5x weight <br>
