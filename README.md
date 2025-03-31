@@ -55,3 +55,12 @@ python train_model.py   <br>
 
 5️⃣ Run the Streamlit app <br>
 streamlit run app.py  <br>
+
+
+# 🎯 How It Works <br>
+1. User logs in or registers. <br>
+2. Selects and rates movies from the dataset. <br>
+3. System computes a user profile based on selected movies. <br>
+4. KNN model finds the nearest neighbors and recommends similar movies. <br>
+5. Recommended movies are displayed with details (title, genres, director, actors, etc.). <br>
+6. Recommendations are saved to the user's profile in MongoDB. <br>
