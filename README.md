@@ -15,7 +15,7 @@ A content-based movie recommendation system that suggests movies based on user p
 | Machine Learning Model  | K-Nearest Neighbors (KNN)  |
 | Security  | bcrypt (Password Hashing)  |
 | Data Handling  | Pandas, MultiLabelBinarizer, Sparse Matrices  |
-| Deployment  | Streamlit Cloud (or Flask if applicable)  |
+| Deployment  | Streamlit Cloud, Flask |
 | Version Control  | Git, GitHub  |
 
 
