@@ -8,7 +8,7 @@ A content-based movie recommendation system that suggests movies based on user p
 # ⚙️ Tech Stack
 Programming Language: Python <br> Libraries & Frameworks: Scikit-learn, NumPy, Pandas, Streamlit <br> Machine Learning Algorithm: K-Nearest Neighbors (KNN) with cosine similarity <br> Data Storage: MongoDB <br> Security: bcrypt for password hashing <br> Deployment: Local/Cloud (can be extended using Docker & cloud services)
 
-Category	Tools/Technologies
+/Technologies
 Programming Language	Python
 Frameworks & Libraries	Streamlit, Scikit-learn, Pandas, NumPy, SciPy
 Database	MongoDB
@@ -19,10 +19,19 @@ Deployment	Streamlit Cloud (or Flask if applicable)
 Version Control	Git, GitHub
 
 
-| First Header  | Second Header |
+| Category	Tools  | Technologies |
 | ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| Programming Language  | Content Cell  |
+| Frameworks & Libraries  | treamlit, Scikit-learn, Pandas, NumPy, SciPy  |
+| Database  | MongoDB  |
+| Machine Learning Model  | K-Nearest Neighbors (KNN)  |
+| Security  | bcrypt (Password Hashing)  |
+| Data Handling  | Pandas, MultiLabelBinarizer, Sparse Matrices  |
+| Deployment  | Streamlit Cloud (or Flask if applicable)  |
+| Version Control  | Git, GitHub  |
+
+
+ 
 📂 Project Structure <br>
 ├── models/&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Serialized model files <br>
 │ &nbsp;   ├── knn_model.pkl  &nbsp; &nbsp; &nbsp; &nbsp;       # Trained KNN model <br>
