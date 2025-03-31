@@ -12,9 +12,9 @@ Programming Language: Python <br> Libraries & Frameworks: Scikit-learn, NumPy, P
 📂 Project Structure <br>
 ├── models/&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Serialized model files <br>
 │   ├── knn_model.pkl  &nbsp; &nbsp; &nbsp; &nbsp;       # Trained KNN model <br>
-│   ├── mlb_genres.pkl &nbsp; &nbsp; &nbsp;       # MultiLabelBinarizer for genres <br>
+│   ├── mlb_genres.pkl &nbsp; &nbsp; &nbsp;      # MultiLabelBinarizer for genres <br>
 │   ├── mlb_directors.pkl &nbsp; &nbsp; &nbsp;    # MultiLabelBinarizer for directors <br>
-│   ├── mlb_actors.pkl        # MultiLabelBinarizer for actors <br>
+│   ├── mlb_actors.pkl &nbsp; &nbsp; &nbsp; &nbsp;         # MultiLabelBinarizer for actors <br>
 │
 ├── data/ <br>
 │   ├── movie_data.csv        # Movie dataset <br>
