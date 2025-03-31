@@ -15,10 +15,10 @@ Programming Language: Python <br> Libraries & Frameworks: Scikit-learn, NumPy, P
 │ &nbsp;   ├── mlb_genres.pkl &nbsp; &nbsp; &nbsp; &nbsp;      # MultiLabelBinarizer for genres <br>
 │ &nbsp;   ├── mlb_directors.pkl &nbsp; &nbsp;     # MultiLabelBinarizer for directors <br>
 │ &nbsp;   ├── mlb_actors.pkl &nbsp; &nbsp; &nbsp; &nbsp;         # MultiLabelBinarizer for actors <br>
-│
+<br>
 ├── data/ <br>
-│ &nbsp;   ├── movie_data.csv        # Movie dataset <br>
-│
+│ &nbsp;   ├── movie_data.csv  &nbsp; &nbsp; &nbsp;      # Movie dataset <br>
+<br>
 ├── app.py                    # Streamlit web application <br>
 ├── recommend.py              # Recommendation logic <br>
 ├── train_model.py            # Model training script <br>
