@@ -11,7 +11,7 @@ Programming Language: Python <br> Libraries & Frameworks: Scikit-learn, NumPy, P
 
 📂 Project Structure <br>
 ├── models/&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Serialized model files <br>
-│   ├── knn_model.pkl  &nbsp; &nbsp;       # Trained KNN model <br>
+│   ├── knn_model.pkl  &nbsp; &nbsp; &nbsp; &nbsp;       # Trained KNN model <br>
 │   ├── mlb_genres.pkl        # MultiLabelBinarizer for genres <br>
 │   ├── mlb_directors.pkl     # MultiLabelBinarizer for directors <br>
 │   ├── mlb_actors.pkl        # MultiLabelBinarizer for actors <br>
