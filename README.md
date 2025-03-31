@@ -92,6 +92,6 @@ streamlit run app.py  <br>
 Feel free to fork this repository and contribute! 🚀 <br>
 
 # 📧 Contact <br>
-📩 Aditya Manoj Menon <br>
+📩 [Aditya Manoj Menon](menonad1@msu.edu) <br>
 📍 GitHub: AdityaManojMenon <br>
 📧 Email: menonad1@msu.edu <br>
