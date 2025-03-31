@@ -39,3 +39,8 @@ pip install -r requirements.txt <br>
 Create a .env file and add your MongoDB URI: <br>
 MONGO_URI=mongodb+srv://your_username:your_password@your_cluster.mongodb.net/  <br>
 
+4️⃣ Train the model <br>
+python train_model.py   <br>
+
+5️⃣ Run the Streamlit app <br>
+streamlit run app.py  <br>
