@@ -19,10 +19,10 @@ Programming Language: Python <br> Libraries & Frameworks: Scikit-learn, NumPy, P
 ├── data/ <br>
 │ &nbsp;   ├── movie_data.csv  &nbsp; &nbsp; &nbsp;      # Movie dataset <br>
 <br>
-├── app.py  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  # Streamlit web application <br>
+├── app.py  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  # Streamlit web application <br>
 ├── recommend.py &nbsp; &nbsp; &nbsp;             # Recommendation logic <br>
 ├── train_model.py &nbsp; &nbsp; &nbsp;           # Model training script <br>
 ├── .env  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; # Environment variables (MongoDB URI) <br>
-├── requirements.txt  &nbsp; &nbsp; &nbsp;       # Project dependencies <br>
-├── README.md  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;               # Documentation <br>
+├── requirements.txt  &nbsp; &nbsp;    # Project dependencies <br>
+├── README.md  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;    # Documentation <br>
 
