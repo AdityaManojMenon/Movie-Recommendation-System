@@ -68,10 +68,10 @@ streamlit run app.py  <br>
 
 # 🛠 Model Training Details <br>
 * Dataset: movie_data.csv (contains movie titles, genres, directors, actors). <br>
-"*" Preprocessing: Used MultiLabelBinarizer to one-hot encode categorical features. <br>
-"*" Feature Engineering: Applied weights to different features: <br>
-Genres: 1.5x weight <br>
-Actors: 1.2x weight <br>
-Directors: 1.1x weight <br>
-"*" Algorithm: K-Nearest Neighbors (KNN) with cosine similarity. <br>
-"*" Model Persistence: Trained model and encoders are stored as .pkl files. <br>
+* Preprocessing: Used MultiLabelBinarizer to one-hot encode categorical features. <br>
+* Feature Engineering: Applied weights to different features: <br>
+ * Genres: 1.5x weight <br>
+ * Actors: 1.2x weight <br>
+ * Directors: 1.1x weight <br>
+* Algorithm: K-Nearest Neighbors (KNN) with cosine similarity. <br>
+* Model Persistence: Trained model and encoders are stored as .pkl files. <br>
