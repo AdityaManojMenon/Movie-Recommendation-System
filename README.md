@@ -10,7 +10,7 @@ Programming Language: Python <br> Libraries & Frameworks: Scikit-learn, NumPy, P
 
 
 📂 Project Structure <br>
-├── models/                   # Serialized model files <br>
+├── models/  &nbsp                 # Serialized model files <br>
 │   ├── knn_model.pkl         # Trained KNN model <br>
 │   ├── mlb_genres.pkl        # MultiLabelBinarizer for genres <br>
 │   ├── mlb_directors.pkl     # MultiLabelBinarizer for directors <br>
