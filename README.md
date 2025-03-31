@@ -9,7 +9,7 @@ A content-based movie recommendation system that suggests movies based on user p
 
 | Category	Tools  | Technologies |
 | ------------- | ------------- |
-| Programming Language  | Content Cell  |
+| Programming Language  | Python  |
 | Frameworks & Libraries  | treamlit, Scikit-learn, Pandas, NumPy, SciPy  |
 | Database  | MongoDB  |
 | Machine Learning Model  | K-Nearest Neighbors (KNN)  |
