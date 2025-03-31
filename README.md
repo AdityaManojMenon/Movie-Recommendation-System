@@ -64,3 +64,14 @@ streamlit run app.py  <br>
 4. KNN model finds the nearest neighbors and recommends similar movies. <br>
 5. Recommended movies are displayed with details (title, genres, director, actors, etc.). <br>
 6. Recommendations are saved to the user's profile in MongoDB. <br>
+
+
+# 🛠 Model Training Details <br>
+"*" Dataset: movie_data.csv (contains movie titles, genres, directors, actors). <br>
+"*" Preprocessing: Used MultiLabelBinarizer to one-hot encode categorical features. <br>
+"*" Feature Engineering: Applied weights to different features: <br>
+Genres: 1.5x weight <br>
+Actors: 1.2x weight <br>
+Directors: 1.1x weight <br>
+"*" Algorithm: K-Nearest Neighbors (KNN) with cosine similarity. <br>
+"*" Model Persistence: Trained model and encoders are stored as .pkl files. <br>
