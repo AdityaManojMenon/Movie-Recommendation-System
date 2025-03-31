@@ -27,3 +27,5 @@ Programming Language: Python <br> Libraries & Frameworks: Scikit-learn, NumPy, P
 ├── README.md  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;    # Documentation <br>
 
 # 🚀 Installation & Setup
+
+1️⃣ Clone the repository
