@@ -11,20 +11,20 @@ A content-based movie recommendation system that suggests movies based on user p
 Programming Language: Python <br> Libraries & Frameworks: Scikit-learn, NumPy, Pandas, Streamlit <br> Machine Learning Algorithm: K-Nearest Neighbors (KNN) with cosine similarity <br> Data Storage: MongoDB <br> Security: bcrypt for password hashing <br> Deployment: Local/Cloud (can be extended using Docker & cloud services)
 
 
-📂 Project Structure
-├── models/                   # Serialized model files
-│   ├── knn_model.pkl         # Trained KNN model
-│   ├── mlb_genres.pkl        # MultiLabelBinarizer for genres
-│   ├── mlb_directors.pkl     # MultiLabelBinarizer for directors
-│   ├── mlb_actors.pkl        # MultiLabelBinarizer for actors
+📂 Project Structure <br>
+├── models/                   # Serialized model files <br>
+│   ├── knn_model.pkl         # Trained KNN model <br>
+│   ├── mlb_genres.pkl        # MultiLabelBinarizer for genres <br>
+│   ├── mlb_directors.pkl     # MultiLabelBinarizer for directors <br>
+│   ├── mlb_actors.pkl        # MultiLabelBinarizer for actors <br>
 │
-├── data/
-│   ├── movie_data.csv        # Movie dataset
+├── data/ <br>
+│   ├── movie_data.csv        # Movie dataset <br>
 │
-├── app.py                    # Streamlit web application
-├── recommend.py              # Recommendation logic
-├── train_model.py            # Model training script
-├── .env                      # Environment variables (MongoDB URI)
-├── requirements.txt          # Project dependencies
-├── README.md                 # Documentation
+├── app.py                    # Streamlit web application <br>
+├── recommend.py              # Recommendation logic <br>
+├── train_model.py            # Model training script <br>
+├── .env                      # Environment variables (MongoDB URI) <br>
+├── requirements.txt          # Project dependencies <br>
+├── README.md                 # Documentation <br>
 
