@@ -80,3 +80,18 @@ streamlit run app.py  <br>
 # 🛡 Security Features <br>
 * User Authentication: MongoDB stores hashed passwords using bcrypt. <br> 
 * Session Management: Streamlit’s session state prevents unauthorized access. <br>
+
+
+# 🌟 Future Improvements <br>  
+✅ Improve recommendation accuracy using NLP-based embeddings (TF-IDF or Word2Vec). <br>  
+✅ Add collaborative filtering to enhance recommendations. <br>  
+✅ Deploy using Docker & Cloud platforms (AWS, Heroku, or Streamlit Cloud). <br> 
+✅ Enhance UI with better visualizations and movie posters. <br> 
+
+# 📌 Contributing <br>
+Feel free to fork this repository and contribute! 🚀 <br>
+
+# 📧 Contact <br>
+📩 Aditya Manoj Menon <br>
+📍 GitHub: AdityaManojMenon <br>
+📧 Email: menonad1@msu.edu <br>
