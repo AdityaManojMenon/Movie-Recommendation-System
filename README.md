@@ -8,9 +8,4 @@ A content-based movie recommendation system that suggests movies based on user p
 
 
 # ⚙️ Tech Stack
-Programming Language: Python
-Libraries & Frameworks: Scikit-learn, NumPy, Pandas, Streamlit
-Machine Learning Algorithm: K-Nearest Neighbors (KNN) with cosine similarity
-Data Storage: MongoDB
-Security: bcrypt for password hashing
-Deployment: Local/Cloud (can be extended using Docker & cloud services)
+Programming Language: Python <br> Libraries & Frameworks: Scikit-learn, NumPy, Pandas, Streamlit <br> Machine Learning Algorithm: K-Nearest Neighbors (KNN) with cosine similarity <br> Data Storage: MongoDB <br> Security: bcrypt for password hashing <br> Deployment: Local/Cloud (can be extended using Docker & cloud services)
