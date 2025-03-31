@@ -28,6 +28,6 @@ Programming Language: Python <br> Libraries & Frameworks: Scikit-learn, NumPy, P
 
 # 🚀 Installation & Setup
 
-1️⃣ Clone the repository
-git clone https://github.com/AdityaManojMenon/Movie-Recommendation-System.git
-cd Movie-Recommendation-System
+1️⃣ Clone the repository <br>
+git clone https://github.com/AdityaManojMenon/Movie-Recommendation-System.git  <br>
+cd Movie-Recommendation-System  <br>
