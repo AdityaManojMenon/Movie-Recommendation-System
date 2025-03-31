@@ -75,3 +75,8 @@ streamlit run app.py  <br>
  &nbsp; &nbsp; * Directors: 1.1x weight <br>
 * Algorithm: K-Nearest Neighbors (KNN) with cosine similarity. <br>
 * Model Persistence: Trained model and encoders are stored as .pkl files. <br>
+
+
+# 🛡 Security Features <br>
+* User Authentication: MongoDB stores hashed passwords using bcrypt. <br> 
+* Session Management: Streamlit’s session state prevents unauthorized access. <br>
