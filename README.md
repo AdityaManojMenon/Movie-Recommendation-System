@@ -1,7 +1,7 @@
 # Movie-Recommendation-System
 A content-based movie recommendation system that suggests movies based on user preferences using machine learning algorithms. Built with Python, Scikit-learn, Streamlit, and MongoDB.
 
-🚀 Features
+#🚀 Features
 ✅ Personalized Recommendations – Suggests movies based on user ratings and metadata.
 ✅ User Authentication – Register and log in using MongoDB & bcrypt encryption.
 ✅ Content-Based Filtering – Uses KNN with cosine similarity on weighted movie features.
