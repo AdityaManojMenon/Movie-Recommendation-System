@@ -26,3 +26,4 @@ Programming Language: Python <br> Libraries & Frameworks: Scikit-learn, NumPy, P
 ├── requirements.txt  &nbsp; &nbsp;    # Project dependencies <br>
 ├── README.md  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;    # Documentation <br>
 
+# 🚀 Installation & Setup
