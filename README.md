@@ -11,13 +11,13 @@ Programming Language: Python <br> Libraries & Frameworks: Scikit-learn, NumPy, P
 
 📂 Project Structure <br>
 ├── models/&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; # Serialized model files <br>
-│   ├── knn_model.pkl  &nbsp; &nbsp; &nbsp; &nbsp;       # Trained KNN model <br>
-│   ├── mlb_genres.pkl &nbsp; &nbsp; &nbsp; &nbsp;      # MultiLabelBinarizer for genres <br>
-│   ├── mlb_directors.pkl &nbsp; &nbsp;     # MultiLabelBinarizer for directors <br>
-│   ├── mlb_actors.pkl &nbsp; &nbsp; &nbsp; &nbsp;         # MultiLabelBinarizer for actors <br>
+│ &nbsp;   ├── knn_model.pkl  &nbsp; &nbsp; &nbsp; &nbsp;       # Trained KNN model <br>
+│ &nbsp;   ├── mlb_genres.pkl &nbsp; &nbsp; &nbsp; &nbsp;      # MultiLabelBinarizer for genres <br>
+│ &nbsp;   ├── mlb_directors.pkl &nbsp; &nbsp;     # MultiLabelBinarizer for directors <br>
+│ &nbsp;   ├── mlb_actors.pkl &nbsp; &nbsp; &nbsp; &nbsp;         # MultiLabelBinarizer for actors <br>
 │
 ├── data/ <br>
-│   ├── movie_data.csv        # Movie dataset <br>
+│ &nbsp;   ├── movie_data.csv        # Movie dataset <br>
 │
 ├── app.py                    # Streamlit web application <br>
 ├── recommend.py              # Recommendation logic <br>
