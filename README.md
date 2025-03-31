@@ -31,3 +31,11 @@ Programming Language: Python <br> Libraries & Frameworks: Scikit-learn, NumPy, P
 1️⃣ Clone the repository <br>
 git clone https://github.com/AdityaManojMenon/Movie-Recommendation-System.git  <br>
 cd Movie-Recommendation-System  <br>
+
+2️⃣ Install dependencies <br>
+pip install -r requirements.txt <br>
+
+3️⃣ Set up MongoDB (if applicable) <br>
+Create a .env file and add your MongoDB URI: <br>
+MONGO_URI=mongodb+srv://your_username:your_password@your_cluster.mongodb.net/  <br>
+
